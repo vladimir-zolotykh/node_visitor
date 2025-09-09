@@ -58,7 +58,7 @@ class Visitor:
         return method(node)
 
     def visit_generic(self, node):
-        raise TypeError(f"{Do not know how to visit {node}")
+        raise TypeError(f"Do not know how to visit {node}")
 
 
 class Evaluator(Visitor):
@@ -67,3 +67,8 @@ class Evaluator(Visitor):
 
     def visit_sub(self, node):
         return self.visit(node.left) - self.visit(node.right)
+
+
+if __name__ == "__main__":
+    res = Evaluator(t1)
+    print(f"{res = }")
