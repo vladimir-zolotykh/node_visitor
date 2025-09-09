@@ -52,8 +52,8 @@ t4 = Add(Number(1), t3)
 
 class Visitor:
     def visit(self, node):
-        cls_name = type(node).__class__.__name__
-        method_name = f"visit_{cls_name}"
+        cls_name = type(node).__name__
+        method_name = f"visit_{cls_name.lower()}"
         method = getattr(self, method_name, self.visit_generic)
         return method(node)
 
@@ -70,5 +70,5 @@ class Evaluator(Visitor):
 
 
 if __name__ == "__main__":
-    res = Evaluator(t1)
+    res = Evaluator().visit(t1)
     print(f"{res = }")
