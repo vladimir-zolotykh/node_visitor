@@ -65,10 +65,22 @@ class Evaluator(Visitor):
     def visit_number(self, node):
         return node.value
 
+    def visit_add(self, node):
+        return self.visit(node.left) + self.visit(node.right)
+
     def visit_sub(self, node):
         return self.visit(node.left) - self.visit(node.right)
 
+    def visit_mul(self, node):
+        return self.visit(node.left) * self.visit(node.right)
+
+    def visit_div(self, node):
+        return self.visit(node.left) / self.visit(node.right)
+
+    def visit_negate(self, node):
+        return -self.visit(node.operand)
+
 
 if __name__ == "__main__":
-    res = Evaluator().visit(t1)
+    res = Evaluator().visit(t4)
     print(f"{res = }")
