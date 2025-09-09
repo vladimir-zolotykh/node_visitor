@@ -51,8 +51,19 @@ t4 = Add(Number(1), t3)
 
 
 class Visitor:
-    pass
+    def visit(self, node):
+        cls_name = type(node).__class__.__name__
+        method_name = f"visit_{cls_name}"
+        method = getattr(self, method_name, self.visit_generic)
+        return method(node)
+
+    def visit_generic(self, node):
+        raise TypeError(f"{Do not know how to visit {node}")
 
 
 class Evaluator(Visitor):
-    pass
+    def visit_number(self, node):
+        return node.value
+
+    def visit_sub(self, node):
+        return self.visit(node.left) - self.visit(node.right)
