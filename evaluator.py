@@ -13,7 +13,8 @@ class Number(Node):
 
 
 class UnaryOperator(Node):
-    pass
+    def __init__(self, operand):
+        self.operand = operand
 
 
 class BinaryOperator(Node):
@@ -26,10 +27,32 @@ class Add(BinaryOperator):
     pass
 
 
+class Sub(BinaryOperator):
+    pass
+
+
+class Mul(BinaryOperator):
+    pass
+
+
+class Div(BinaryOperator):
+    pass
+
+
 class Negate(UnaryOperator):
     pass
 
 
-"""
-t1 = Sub(10, 3)
-"""
+# Representation of 1 + 2 * (3 - 4) / 5
+t1 = Sub(Number(3), Number(4))
+t2 = Mul(Number(2), t1)
+t3 = Div(t2, Number(5))
+t4 = Add(Number(1), t3)
+
+
+class Visitor:
+    pass
+
+
+class Evaluator(Visitor):
+    pass
